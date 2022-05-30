@@ -1,0 +1,22 @@
+{
+  "presets": [
+    "env"
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-private-methods",
+    "transform-runtime"
+  ],
+  "parserOpts": {
+    "plugins": [
+      "dynamicImport",
+      "classPrivateMethods"
+    ]
+  }
+}
