@@ -1,6 +1,7 @@
 import { arrow, computePosition, flip, offset, shift } from "@floating-ui/dom";
 
 export const updatePosition = (buttonRef, tooltipRef, arrowRef) => {
+  // console.log(buttonRef, tooltipRef, arrowRef);
   // pass config in?
   const options = {
     placement: "top",
