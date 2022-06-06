@@ -31,6 +31,7 @@ class PortalEntrance extends LitElement {
     );
   }
   projectSlot(e) {
+    console.log("projecting slot");
     if (!e.target.assignedElements().length) return;
     this.dispatchEvent(
       createEvent("portal-open", {
@@ -44,5 +45,6 @@ class PortalEntrance extends LitElement {
     return html`<slot @slotchange=${this.projectSlot}></slot>`;
   }
 }
-
-customElements.define("portal-entrance", PortalEntrance);
+if (!customElements.get("portal-entrance")) {
+  customElements.define("portal-entrance", PortalEntrance);
+}

@@ -24,15 +24,27 @@ class TestPortal extends LitElement {
     ];
   }
 
+  toggleProjecting() {
+    this.projecting = !this.projecting;
+  }
+
+  testEl() {
+    return html`<div>hello</div>`;
+  }
+
   render() {
     const { projecting, toggleProjecting } = this;
-    return projecting
-      ? html` <portal-entrance destination="test">
-          <div>practice</div>
-        </portal-entrance>`
-      : html`<button @click=${toggleProjecting}>
-          click me to see portal
-        </button>`;
+    return html`
+      ${this.testEl()}
+      ${projecting
+        ? html`<portal-entrance destination="test"
+            >${this.testEl()}</portal-entrance
+          >`
+        : null}
+      <button @click=${toggleProjecting}>
+        click me to see portal
+      </button>
+    `;
   }
 }
 
