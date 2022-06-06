@@ -8,20 +8,18 @@ class Popup extends LitElement {
   }
   render() {
     return html`
-    
       <ax-overlay id="popup">
-      <button slot="invoker">
-        My popup
-      </button>
+        <button slot="invoker">
+          My popup
+        </button>
         <div slot="content">
           <button>btn 1</button>
           <button>btn 2</button>
           <button>btn 3</button>
           <div>
-            <input type="text">
+            <input type="text" />
           </div>
         </div>
-      </div>
       </ax-overlay>
     `;
   }

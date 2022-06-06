@@ -9,6 +9,7 @@ export default [
       position: absolute;
       z-index: 1;
       border: black 1px solid;
+      margin: 0;
     }
     #arrow {
       position: absolute;

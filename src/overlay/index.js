@@ -32,7 +32,7 @@ class Overlay extends LitElement {
 
   updated(changedProps) {
     if (changedProps.has("_show")) {
-      this.show ? this.showTooltip() : this.hideTooltip();
+      this.show ? this.showOverlay() : this.hideOverlay();
     }
   }
 
@@ -50,17 +50,17 @@ class Overlay extends LitElement {
     }
   };
 
-  showTooltip(e) {
+  showOverlay(e) {
     const { buttonRef, overlayRef, arrowRef } = this;
     // TODO more stuff for accessibility
     overlayRef.value.style.display = "block";
     overlayRef.haspopup = true;
-    updatePosition(buttonRef, overlayRef, arrowRef);
+    updatePosition(buttonRef, overlayRef, arrowRef, true);
     // attach close event listeners - click + ESC
     this.attachEventListeners();
   }
 
-  hideTooltip() {
+  hideOverlay() {
     const { overlayRef } = this;
     overlayRef.haspopup = false;
     overlayRef.value.style.display = "";
@@ -112,10 +112,10 @@ class Overlay extends LitElement {
           My button
         </slot>
       </div>
-      <div id="popup" ${ref(overlayRef)} @click=${onPopupClick}>
+      <dialog id="popup" ${ref(overlayRef)} @click=${onPopupClick}>
         <slot name="content"></slot>
         <div ${ref(arrowRef)} id="arrow"></div>
-      </div>
+      </dialog>
     `;
   }
 }

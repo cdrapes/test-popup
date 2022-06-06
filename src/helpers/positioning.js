@@ -1,6 +1,6 @@
 import { arrow, computePosition, flip, offset, shift } from "@floating-ui/dom";
 
-export const updatePosition = (buttonRef, tooltipRef, arrowRef) => {
+export const updatePosition = (buttonRef, overlayRef, arrowRef, global) => {
   // console.log(buttonRef, tooltipRef, arrowRef);
   // pass config in?
   const options = {
@@ -12,9 +12,9 @@ export const updatePosition = (buttonRef, tooltipRef, arrowRef) => {
       arrow({ element: arrowRef.value })
     ]
   };
-  computePosition(buttonRef.value, tooltipRef.value, options).then(
+  computePosition(buttonRef.value, overlayRef.value, options).then(
     ({ x, y, placement, middlewareData }) => {
-      Object.assign(tooltipRef.value.style, {
+      Object.assign(overlayRef.value.style, {
         left: `${x}px`,
         top: `${y}px`
       });
@@ -37,4 +37,22 @@ export const updatePosition = (buttonRef, tooltipRef, arrowRef) => {
       });
     }
   );
+
+  if (global) {
+    const globalOverlay = document.getElementById("global-overlay");
+    const slotContent = getSlotContent(overlayRef.value);
+    console.log(slotContent);
+    // globalOverlay.appendChild(slotContent);
+  }
+};
+
+export const getSlotContent = (lightDomEl) => {
+  if (lightDomEl) {
+    return lightDomEl
+      .getRootNode()
+      .querySelector("slot[name=content]")
+      .assignedNodes({ flatten: true })[0];
+  } else {
+    throw new Error(`light dom el doesn't exist`);
+  }
 };
