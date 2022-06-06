@@ -1,7 +1,6 @@
 import { arrow, computePosition, flip, offset, shift } from "@floating-ui/dom";
 
-export const updatePosition = (buttonRef, tooltipRef, arrowRef) => {
-  // console.log(buttonRef, tooltipRef, arrowRef);
+export const updatePosition = (buttonRef, tooltipRef, arrowRef, global) => {
   // pass config in?
   const options = {
     placement: "top",
@@ -35,6 +34,12 @@ export const updatePosition = (buttonRef, tooltipRef, arrowRef) => {
         bottom: "",
         [staticSide]: "-4px"
       });
+
+      // if global, project content onto root node
+      // if (global) {
+      //   const portal = document.getElementById("portal");
+      //   portal.appendChild(tooltipRef.value);
+      // }
     }
   );
 };

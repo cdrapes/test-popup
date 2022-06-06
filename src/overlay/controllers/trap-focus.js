@@ -28,8 +28,10 @@ export class TrapFocusController {
   }
 
   hostDisconnected() {
-    this.contentElement.removeEventListener("keydown", this.trapFocusHandler);
-    console.log("host disconnected");
+    if (this.contentElement) {
+      this.contentElement.removeEventListener("keydown", this.trapFocusHandler);
+      console.log("host disconnected");
+    }
   }
 
   setContentElement(el) {

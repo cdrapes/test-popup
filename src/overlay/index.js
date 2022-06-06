@@ -9,7 +9,7 @@ class Overlay extends LitElement {
   overlayRef = createRef();
   arrowRef = createRef();
 
-  // CONTROLLERS!!!!
+  // Controllers
   trapFocusController = new TrapFocusController(this);
 
   // add state for display/hide tooltip
@@ -32,7 +32,7 @@ class Overlay extends LitElement {
 
   updated(changedProps) {
     if (changedProps.has("_show")) {
-      this.show ? this.showTooltip() : this.hideTooltip();
+      this.show ? this.showOverlay() : this.hideOverlay();
     }
   }
 
@@ -50,17 +50,18 @@ class Overlay extends LitElement {
     }
   };
 
-  showTooltip(e) {
+  showOverlay(e) {
     const { buttonRef, overlayRef, arrowRef } = this;
     // TODO more stuff for accessibility
     overlayRef.value.style.display = "block";
     overlayRef.haspopup = true;
-    updatePosition(buttonRef, overlayRef, arrowRef);
+    // console.log(e);
+    updatePosition(buttonRef, overlayRef, arrowRef, true);
     // attach close event listeners - click + ESC
     this.attachEventListeners();
   }
 
-  hideTooltip() {
+  hideOverlay() {
     const { overlayRef } = this;
     overlayRef.haspopup = false;
     overlayRef.value.style.display = "";
